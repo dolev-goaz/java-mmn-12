@@ -22,6 +22,7 @@ public class Rational {
     }
 
     public boolean greaterThan(Rational other) {
+        // TODO: extract to separate method to prevent repeat with equals
         return this.getNumerator() * other.getDenominator() >
                 other.getNumerator() * this.getDenominator();
     }
@@ -44,6 +45,17 @@ public class Rational {
         return doAddSubtract(this, other, false);
     }
 
+    private Rational multiply(Rational other) {
+        return doMultiplyDivide(this, other, true);
+    }
+
+    private Rational divide(Rational other) throws ArithmeticException {
+        if (other.getNumerator() == 0) {
+            throw new ArithmeticException("Can not divide by zero!");
+        }
+        return doMultiplyDivide(this, other, false);
+    }
+
     private static Rational doAddSubtract(Rational r1, Rational r2, boolean isAdd) {
         int component1 = r1.getNumerator() * r2.getDenominator();
         int component2 = r2.getNumerator() * r1.getDenominator();
@@ -51,6 +63,16 @@ public class Rational {
                 ? component1 + component2
                 : component1 - component2;
         int denominator = r1.getDenominator() * r2.getDenominator();
+        return new Rational(numerator, denominator);
+    }
+
+    // Assumes non-zero denominator to prevent try-catch inside multiply
+    private static Rational doMultiplyDivide(Rational r1, Rational r2, boolean isMultiply) {
+        int multiplyByNumerator = isMultiply ? r2.getNumerator() : r2.getDenominator();
+        int multiplyByDenominator = isMultiply ? r2.getDenominator() : r2.getNumerator();
+
+        int numerator = r1.getNumerator() * multiplyByNumerator;
+        int denominator = r1.getDenominator() * multiplyByDenominator;
         return new Rational(numerator, denominator);
     }
 }
