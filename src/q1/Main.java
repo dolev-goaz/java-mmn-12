@@ -13,6 +13,9 @@ public class Main {
         for (Employee employee : employees) {
             System.out.println(employee);
             double salary = employee.earnings();
+            // could put this section inside Employee::toString, wasn't required
+            // I think it's better to have the BIRTH_MONTH_GIFT constant outside of the Employee class,
+            // since it isn't necessarily related to an employee
             if (employee.getBirthDate().isBirthdayThisMonth()) {
                 System.out.println("This employee is celebrating their birthday this month! Happy birthday!!");
                 salary += BIRTH_MONTH_GIFT;
