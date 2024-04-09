@@ -96,10 +96,20 @@ public class Main {
     }
 
     private static Rational inputRational() {
-        int numerator = inputNumeric("Insert numerator: ");
-        int denominator = inputNumeric("Insert denominator: ");
+        Rational output = null;
+        do {
+            int numerator = inputNumeric("Insert numerator: ");
+            int denominator = inputNumeric("Insert denominator: ");
+            try {
+                output = new Rational(numerator, denominator);
+            } catch (IllegalArgumentException e) {
+                // I tried using System.err, but using two different streams to the console caused inconsistencies
+                // with the printing order.
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        } while (output == null);
 
-        return new Rational(numerator, denominator);
+        return output;
     }
 
     private static int inputNumeric(String inputMessage) {
