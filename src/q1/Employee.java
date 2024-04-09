@@ -7,13 +7,15 @@ public abstract class Employee {
    private final String firstName;
    private final String lastName;
    private final String socialSecurityNumber;
+   private final BirthDate birthDate;
 
    // constructor
    public Employee(String firstName, String lastName,
-                   String socialSecurityNumber) {
+                   String socialSecurityNumber, BirthDate birthDate) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.socialSecurityNumber = socialSecurityNumber;
+      this.birthDate = birthDate;
    }
 
    // return first name
@@ -31,11 +33,14 @@ public abstract class Employee {
       return socialSecurityNumber;
    }
 
+   // return birth date
+   public BirthDate getBirthDate() { return birthDate; }
+
    // return String representation of Employee object
    @Override
    public String toString() {
-      return String.format("%s %s%nsocial security number: %s",
-              getFirstName(), getLastName(), getSocialSecurityNumber());
+      return String.format("%s %s%nsocial security number: %s%nbirth date: %s",
+              getFirstName(), getLastName(), getSocialSecurityNumber(), getBirthDate());
    }
 
    // abstract method must be overridden by concrete subclasses
