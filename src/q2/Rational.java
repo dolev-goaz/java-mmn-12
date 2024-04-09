@@ -20,10 +20,13 @@ public class Rational {
         return numerator;
     }
 
-    public boolean greaterThan(Rational other) {
-        // TODO: extract to separate method to prevent repeat with equals
-        return this.getNumerator() * other.getDenominator() >
+    private int compareValue(Rational other) {
+        return this.getNumerator() * other.getDenominator() -
                 other.getNumerator() * this.getDenominator();
+    }
+
+    public boolean greaterThan(Rational other) {
+        return this.compareValue(other) > 0;
     }
 
     @Override
@@ -35,8 +38,7 @@ public class Rational {
     }
 
     public boolean equals(Rational other) {
-        return this.getNumerator() * other.getDenominator() ==
-                other.getNumerator() * this.getDenominator();
+        return this.compareValue(other) == 0;
     }
 
     public Rational plus(Rational other) {
