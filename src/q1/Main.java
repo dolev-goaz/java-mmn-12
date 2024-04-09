@@ -1,6 +1,5 @@
 package q1;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
@@ -8,7 +7,7 @@ public class Main {
     private static final int BIRTH_MONTH_GIFT = 200;
 
     public static void main(String[] args) {
-        ArrayList<Employee> employees = initializeEmployees();
+        Employee[] employees = initializeEmployees();
 
         for (Employee employee : employees) {
             System.out.println(employee);
@@ -25,7 +24,7 @@ public class Main {
         }
     }
 
-    private static ArrayList<Employee> initializeEmployees() {
+    private static Employee[] initializeEmployees() {
         Random rnd = new Random();
         BirthDate[] birthdays = new BirthDate[MONTHS_IN_YEAR];
         for (int i = 0; i < MONTHS_IN_YEAR; i++) {
@@ -35,22 +34,22 @@ public class Main {
                     1990 + rnd.nextInt(20)
             );
         }
-        ArrayList<Employee> employees = new ArrayList<Employee>();
-        employees.add(new SalariedEmployee(
-                "Dani", "Kushmaro",
-                "111-21-3333", birthdays[2], 500));
-
-        employees.add(new CommissionEmployee(
-                "Micky", "Buganim",
-                "123-45-6789", birthdays[3], 50000, 0.2));
-
-        employees.add(new BasePlusCommissionEmployee(
-                "Dolev", "Goaz",
-                "987-65-4321", birthdays[4], 50000, 0.2, 20000));
-
-        employees.add(new HourlyEmployee(
-                "Nicki", "Minaj",
-                "999-99-9999", birthdays[5], 20, 50));
+        Employee[] employees = {
+                new SalariedEmployee("Dani", "Kushmaro",
+                        "111-21-3333", birthdays[2], 500),
+                new CommissionEmployee(
+                        "Micky", "Buganim",
+                        "123-45-6789", birthdays[3], 50000, 0.2),
+                new BasePlusCommissionEmployee(
+                        "Dolev", "Goaz",
+                        "987-65-4321", birthdays[4], 50000, 0.2, 20000),
+                new HourlyEmployee(
+                        "Nicki", "Minaj",
+                        "999-99-9999", birthdays[5], 20, 50),
+                new PieceWorker(
+                        "Yonit", "Levi",
+                        "000-00-0000", birthdays[6], 500, 7)
+        };
 
         return employees;
     }
