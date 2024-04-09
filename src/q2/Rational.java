@@ -4,7 +4,7 @@ public class Rational {
     private int numerator;
     private int denominator;
 
-    public Rational(int numerator, int denominator) throws  IllegalArgumentException {
+    public Rational(int numerator, int denominator) throws IllegalArgumentException {
         if (denominator <= 0) {
             throw new IllegalArgumentException("Denominator must be positive!");
         }
@@ -28,10 +28,9 @@ public class Rational {
 
     @Override
     public boolean equals(Object o) {
-        // TODO: verify if we're supposed to override
         if (this == o) return true;
-        if ((o == null) || !(o instanceof  Rational)) return false;
-        Rational other = (Rational) o;
+        if ((o == null) || !(o instanceof Rational)) return false;
+        Rational other = (Rational) o; // could single-line this
         return this.equals(other);
     }
 
