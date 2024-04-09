@@ -56,6 +56,26 @@ public class Rational {
         return doMultiplyDivide(this, other, false);
     }
 
+    private Rational reduce() {
+        int gcd = this.getGCD();
+        return new Rational(
+                this.getNumerator() / gcd,
+                this.getDenominator() / gcd
+        );
+    }
+
+    private int getGCD() {
+        return calculateGCD(Math.abs(this.getNumerator()), Math.abs(this.getDenominator()));
+    }
+
+    private static int calculateGCD(int first, int second) {
+        if (second == 0) {
+            return first;
+        } else {
+            return calculateGCD(second, first % second);
+        }
+    }
+
     private static Rational doAddSubtract(Rational r1, Rational r2, boolean isAdd) {
         int component1 = r1.getNumerator() * r2.getDenominator();
         int component2 = r2.getNumerator() * r1.getDenominator();
