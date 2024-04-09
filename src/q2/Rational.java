@@ -32,7 +32,11 @@ public class Rational {
         if (this == o) return true;
         if ((o == null) || !(o instanceof  Rational)) return false;
         Rational other = (Rational) o;
-        return this.getNumerator() * other.getDenominator() >
+        return this.equals(other);
+    }
+
+    public boolean equals(Rational other) {
+        return this.getNumerator() * other.getDenominator() ==
                 other.getNumerator() * this.getDenominator();
     }
 
