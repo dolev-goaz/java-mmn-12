@@ -11,12 +11,13 @@ public class Main {
         ArrayList<Employee> employees = initializeEmployees();
 
         for (Employee employee : employees) {
+            System.out.println(employee);
             double salary = employee.earnings();
-            if (employee.getBirthDate().isBirthdayMonth()) {
+            if (employee.getBirthDate().isBirthdayThisMonth()) {
+                System.out.println("This employee is celebrating their birthday this month! Happy birthday!!");
                 salary += BIRTH_MONTH_GIFT;
             }
-
-            System.out.println(String.format("%s%nSalary- %,.2f$", employee, salary));
+            System.out.println(String.format("Salary- %,.2f$", salary));
             System.out.println(); // separator
         }
     }

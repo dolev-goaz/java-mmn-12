@@ -17,7 +17,7 @@ public class BirthDate {
         return String.format("%d/%d/%d", day, month, year);
     }
 
-    public boolean isBirthdayMonth() {
+    public boolean isBirthdayThisMonth() {
         Calendar today = Calendar.getInstance();
         return today.get(Calendar.MONTH) + 1 == month; // +1 because months start with 0
     }
