@@ -5,9 +5,8 @@ public class Rational {
     private int denominator;
 
     public Rational(int numerator, int denominator) throws  IllegalArgumentException {
-        // TODO: verify this is the only validation we should have
-        if (denominator == 0) {
-            throw new IllegalArgumentException("Denominator can not be 0!");
+        if (denominator <= 0) {
+            throw new IllegalArgumentException("Denominator must be positive!");
         }
         this.numerator = numerator;
         this.denominator = denominator;
@@ -98,6 +97,13 @@ public class Rational {
 
         int numerator = r1.getNumerator() * multiplyByNumerator;
         int denominator = r1.getDenominator() * multiplyByDenominator;
+
+        // denominator can't be negative. if it is- move the negative sign to the numerator.
+        // also handles the case where both numerator and denominator are negative.
+        if (denominator < 0) {
+            denominator *= -1;
+            numerator *= -1;
+        }
         return new Rational(numerator, denominator);
     }
 }
