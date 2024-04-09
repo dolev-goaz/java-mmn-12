@@ -8,11 +8,53 @@ public class Main {
         Rational r1 = inputRational();
         System.out.println(String.format("Provided r1: %s.", r1));
 
+        System.out.println(); // separator
+
         System.out.println("Input rational number r2");
         Rational r2 = inputRational();
         System.out.println(String.format("Provided r2: %s.", r2));
 
+        System.out.println(); // separator
 
+        runOperations(r1, r2);
+    }
+
+    private static void runOperations(Rational r1, Rational r2) {
+        Character[] operations = {'+', '-', '*', '/'};
+        for (Character operation: operations) {
+            try {
+                Rational output = runOperation(r1, r2, operation);
+                System.out.println(
+                        String.format("%s %c %s = %s", r1, operation, r2, output.reduce())
+                );
+            } catch (UnsupportedOperationException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    private static Rational runOperation(Rational r1, Rational r2, Character operationChar)
+            throws UnsupportedOperationException {
+        Rational output;
+        switch (operationChar) {
+            case '*':
+                output = r1.multiply(r2);
+                break;
+            case '/':
+                output = r1.divide(r2);
+                break;
+            case '+':
+                output = r1.plus(r2);
+                break;
+            case '-':
+                output = r1.minus(r2);
+                break;
+            default:
+                throw new UnsupportedOperationException(
+                        String.format("Invalid rational operation '%c'", operationChar)
+                );
+        }
+        return output;
     }
 
     private static Rational inputRational() {
