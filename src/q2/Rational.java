@@ -45,23 +45,28 @@ public class Rational {
         return doAddSubtract(this, other, false);
     }
 
-    private Rational multiply(Rational other) {
+    public Rational multiply(Rational other) {
         return doMultiplyDivide(this, other, true);
     }
 
-    private Rational divide(Rational other) throws ArithmeticException {
+    public Rational divide(Rational other) throws ArithmeticException {
         if (other.getNumerator() == 0) {
             throw new ArithmeticException("Can not divide by zero!");
         }
         return doMultiplyDivide(this, other, false);
     }
 
-    private Rational reduce() {
+    public Rational reduce() {
         int gcd = this.getGCD();
         return new Rational(
                 this.getNumerator() / gcd,
                 this.getDenominator() / gcd
         );
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d/%d", this.getNumerator(), this.getDenominator());
     }
 
     private int getGCD() {
