@@ -7,6 +7,7 @@ public class BirthDate {
     private final int year;
 
     public BirthDate(int day, int month, int year) {
+        // NOTE: since all previous classes do not include 'throws...', we do not include it here.
         if (!isDateValid(day, month, year)) {
             throw new IllegalArgumentException(
                     String.format("Invalid date provided! Date- %d/%d/%d", day, month, year)
