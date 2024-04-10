@@ -1,5 +1,7 @@
 package q1;
 
+// PieceWorker class extends Employee. represents an employee
+// that is paid by products sold.
 public class PieceWorker extends Employee {
     private final double profitPerItem;
     private final int itemsProducedCount;
@@ -24,8 +26,27 @@ public class PieceWorker extends Employee {
         this.itemsProducedCount = itemsProducedCount;
     }
 
+    // return profit per item
+    public double getProfitPerItem() {
+        return profitPerItem;
+    }
+
+    // return count of items produced
+    public int getItemsProducedCount() {
+        return itemsProducedCount;
+    }
+
+    // calculate earnings; override abstract method earnings in Employee
     @Override
     public double earnings() {
         return profitPerItem * itemsProducedCount;
+    }
+
+    // return String representation of PieceWorker object
+    @Override
+    public String toString() {
+        return String.format("piece worker: %s%n%s: %,.2f$; %s: %d",
+                super.toString(), "profit per item", getProfitPerItem(),
+                "items produced", getItemsProducedCount());
     }
 }

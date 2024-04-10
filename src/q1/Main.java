@@ -27,16 +27,19 @@ public class Main {
         }
     }
 
+    // returns an array of different employees
     private static Employee[] initializeEmployees() {
         Random rnd = new Random();
+        // generate random birthdays, one in each month
         BirthDate[] birthdays = new BirthDate[MONTHS_IN_YEAR];
         for (int i = 0; i < MONTHS_IN_YEAR; i++) {
             birthdays[i] = new BirthDate(
-                    rnd.nextInt(30),
+                    1 + rnd.nextInt(28), // 1 to 28
                     i + 1,
                     1990 + rnd.nextInt(20)
             );
         }
+        // assignment required an array
         Employee[] employees = {
                 new SalariedEmployee("Dani", "Kushmaro",
                         "111-21-3333", birthdays[2], 500),
