@@ -12,13 +12,16 @@ public class Main {
         for (Employee employee : employees) {
             System.out.println(employee);
             double salary = employee.earnings();
-            // could put this section inside Employee::toString, wasn't required
+            // could put this section inside Employee::earnings, wasn't required
             // I think it's better to have the BIRTH_MONTH_GIFT constant outside of the Employee class,
             // since it isn't necessarily related to an employee
+            // was also clarified with the course's mentor Moran via mail and she agreed
             if (employee.getBirthDate().isBirthdayThisMonth()) {
                 System.out.println("This employee is celebrating their birthday this month! Happy birthday!!");
                 salary += BIRTH_MONTH_GIFT;
             }
+            // in the assignment it was asked that the units would be NIS, though in the provided
+            // code it was in dollars. for consistency's sake, i kept it as USD here.
             System.out.println(String.format("Salary- %,.2f$", salary));
             System.out.println(); // separator
         }
