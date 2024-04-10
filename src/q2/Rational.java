@@ -20,11 +20,13 @@ public class Rational {
         return numerator;
     }
 
+    // returns positive if current instance is greater, 0 if equal, negative if other is greater.
     private int compareValue(Rational other) {
         return this.getNumerator() * other.getDenominator() -
                 other.getNumerator() * this.getDenominator();
     }
 
+    // returns whether the current instance is greater than the provided rational number
     public boolean greaterThan(Rational other) {
         return this.compareValue(other) > 0;
     }
@@ -37,22 +39,27 @@ public class Rational {
         return this.equals(other);
     }
 
+    // returns whether the current instance is equal to the provided rational number
     public boolean equals(Rational other) {
         return this.compareValue(other) == 0;
     }
 
+    // calculates addition with another rational number
     public Rational plus(Rational other) {
         return doAddSubtract(this, other, true);
     }
 
+    // calculates subtraction of another rational number
     public Rational minus(Rational other) {
         return doAddSubtract(this, other, false);
     }
 
+    // calculates multiplication with another rational number
     public Rational multiply(Rational other) {
         return doMultiplyDivide(this, other, true);
     }
 
+    // calculates division by another rational number
     public Rational divide(Rational other) throws ArithmeticException {
         if (other.getNumerator() == 0) {
             throw new ArithmeticException("Can not divide by zero!");
@@ -60,6 +67,7 @@ public class Rational {
         return doMultiplyDivide(this, other, false);
     }
 
+    // Returns a simplified rational number, with the same numeric value
     public Rational reduce() {
         int gcd = this.getGCD();
         return new Rational(
@@ -73,18 +81,20 @@ public class Rational {
         return String.format("%d/%d", this.getNumerator(), this.getDenominator());
     }
 
+    // returns the greatest common divisor of the numerator and denominator of the current rational number
     private int getGCD() {
         return calculateGCD(Math.abs(this.getNumerator()), Math.abs(this.getDenominator()));
     }
 
+    // calculates the greatest common divisor of two numbers
     private static int calculateGCD(int first, int second) {
         if (second == 0) {
             return first;
-        } else {
-            return calculateGCD(second, first % second);
         }
+        return calculateGCD(second, first % second);
     }
 
+    // handles both addition and subtraction(since the logic is nearly identical)
     private static Rational doAddSubtract(Rational r1, Rational r2, boolean isAdd) {
         int component1 = r1.getNumerator() * r2.getDenominator();
         int component2 = r2.getNumerator() * r1.getDenominator();
@@ -96,7 +106,9 @@ public class Rational {
     }
 
     // Assumes non-zero denominator to prevent try-catch inside multiply
+    // handles both multiplication and division(since the logic is nearly identical)
     private static Rational doMultiplyDivide(Rational r1, Rational r2, boolean isMultiply) {
+        // with division we invert the numerator/denominator multiplication
         int multiplyByNumerator = isMultiply ? r2.getNumerator() : r2.getDenominator();
         int multiplyByDenominator = isMultiply ? r2.getDenominator() : r2.getNumerator();
 

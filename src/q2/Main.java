@@ -26,6 +26,7 @@ public class Main {
         runOperations(r1, r2);
     }
 
+    // loops over all comparisons and prints whether they're correct.
     private static void runComparisons(Rational r1, Rational r2) {
         for (Character comparison: comparisons) {
             try {
@@ -43,6 +44,7 @@ public class Main {
 
     }
 
+    // executes a single comparison and returns whether it's a true statement.
     private static boolean runComparison(Rational r1, Rational r2, Character comparisonChar) {
         switch (comparisonChar) {
             case '=':
@@ -58,6 +60,7 @@ public class Main {
         }
     }
 
+    // loops over all operations and prints their results.
     private static void runOperations(Rational r1, Rational r2) {
         for (Character operation: operations) {
             try {
@@ -71,6 +74,7 @@ public class Main {
         }
     }
 
+    // executes a single operation and returns the result.
     private static Rational runOperation(Rational r1, Rational r2, Character operationChar)
             throws UnsupportedOperationException {
         Rational output;
@@ -95,6 +99,8 @@ public class Main {
         return output;
     }
 
+    // Receives a rational number as input from the user.
+    // Validates that the rational number is valid.
     private static Rational inputRational() {
         Rational output = null;
         do {
@@ -112,8 +118,9 @@ public class Main {
         return output;
     }
 
+    // Receives an integer as input from the user.
     private static int inputNumeric(String inputMessage) {
-        Integer value = null;
+        Integer value = null; // using Integer to allow it being nullable
         Scanner scan = new Scanner(System.in);
         do {
             System.out.print(inputMessage);
