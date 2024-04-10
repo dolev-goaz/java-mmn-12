@@ -1,11 +1,12 @@
 package q1;
 
 // PieceWorker class extends Employee. represents an employee
-// that is paid by products sold.
+// that is paid by products produced.
 public class PieceWorker extends Employee {
-    private final double profitPerItem;
-    private final int itemsProducedCount;
+    private final double profitPerItem; // profit gained by a product being produced
+    private final int itemsProducedCount; // the amount of products that were produced
 
+    // constructor
     public PieceWorker(String firstName, String lastName, String socialSecurityNumber,
                        BirthDate birthDate, double profitPerItem, int itemsProducedCount) {
         super(firstName, lastName, socialSecurityNumber, birthDate);
