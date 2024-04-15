@@ -33,6 +33,21 @@ public class BirthDate {
         }
     }
 
+    // get day
+    public int getDay() {
+        return day;
+    }
+
+    // get month
+    public int getMonth() {
+        return month;
+    }
+
+    // get year
+    public int getYear() {
+        return year;
+    }
+
     @Override
     public String toString() {
         return String.format("%d/%d/%d", day, month, year);
@@ -40,6 +55,6 @@ public class BirthDate {
 
     public boolean isBirthdayThisMonth() {
         Calendar today = Calendar.getInstance();
-        return today.get(Calendar.MONTH) + 1 == month; // +1 because months start with 0
+        return today.get(Calendar.MONTH) + 1 == getMonth(); // +1 because months start with 0
     }
 }
