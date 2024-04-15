@@ -1,9 +1,11 @@
 package q2;
 
+// rational number with integer numerator and positive integer denominator
 public class Rational {
     private int numerator;
     private int denominator;
 
+    // constructor
     public Rational(int numerator, int denominator) throws IllegalArgumentException {
         if (denominator <= 0) {
             throw new IllegalArgumentException("Denominator must be positive!");
@@ -12,10 +14,12 @@ public class Rational {
         this.denominator = denominator;
     }
 
+    // get denominator
     public int getDenominator() {
         return denominator;
     }
 
+    // get numerator
     public int getNumerator() {
         return numerator;
     }
@@ -32,6 +36,7 @@ public class Rational {
     }
 
     @Override
+    // returns whether the current instance is equal to the provided object
     public boolean equals(Object o) {
         if (this == o) return true;
         if ((o == null) || !(o instanceof Rational)) return false;
@@ -77,6 +82,7 @@ public class Rational {
     }
 
     @Override
+    // string representation
     public String toString() {
         return String.format("%d/%d", this.getNumerator(), this.getDenominator());
     }
@@ -98,6 +104,7 @@ public class Rational {
     private static Rational doAddSubtract(Rational r1, Rational r2, boolean isAdd) {
         int component1 = r1.getNumerator() * r2.getDenominator();
         int component2 = r2.getNumerator() * r1.getDenominator();
+        // the difference between addition and subtraction is whether we add/subtract in the numerator.
         int numerator = isAdd
                 ? component1 + component2
                 : component1 - component2;
