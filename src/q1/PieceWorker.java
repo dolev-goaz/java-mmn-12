@@ -18,7 +18,7 @@ public class PieceWorker extends Employee {
             throw new IllegalArgumentException("profit per item must be positive");
         }
 
-        if (itemsProducedCount < 0.0) { // items produced
+        if (itemsProducedCount < 0.0) { // items produced validation
             throw new IllegalArgumentException(
                     "Count of produced items must be non-negative");
         }
