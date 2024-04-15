@@ -3,7 +3,14 @@ package q1;
 import java.util.Random;
 
 public class Main {
-    private static final int MONTHS_IN_YEAR = 12;
+    // random birthdays generation parameters
+    private static final int INITIAL_MONTH = 3; // march
+    private static final int MONTH_SPREAD = 5; // 5 months ahead
+    private static final int LOWEST_YEAR = 1990;
+    private static final int YEAR_RANGE = 20;
+    private static final int MAX_DAY = 28; // limited to 28 to prevent invalid dates in february
+
+    // birth month gift
     private static final int BIRTH_MONTH_GIFT = 200;
 
     public static void main(String[] args) {
@@ -27,34 +34,41 @@ public class Main {
         }
     }
 
-    // returns an array of different employees
-    private static Employee[] initializeEmployees() {
+    // generates random birthdays, applying the parameters provided in the static attributes
+    private static BirthDate[] generateBirthDates() {
         Random rnd = new Random();
         // generate random birthdays, one in each month
-        BirthDate[] birthdays = new BirthDate[MONTHS_IN_YEAR];
-        for (int i = 0; i < MONTHS_IN_YEAR; i++) {
+        BirthDate[] birthdays = new BirthDate[MONTH_SPREAD];
+        for (int i = 0; i < MONTH_SPREAD; i++) {
             birthdays[i] = new BirthDate(
-                    1 + rnd.nextInt(28), // 1 to 28
-                    i + 1,
-                    1990 + rnd.nextInt(20)
+                    1 + rnd.nextInt(MAX_DAY), // 1 to 28, day index starts from 0
+                    i + INITIAL_MONTH, // month index starts from 0
+                    LOWEST_YEAR + rnd.nextInt(YEAR_RANGE)
             );
         }
+        return birthdays;
+    }
+
+
+    // returns an array of different employees
+    private static Employee[] initializeEmployees() {
+        BirthDate[] birthdays = generateBirthDates();
         // assignment required an array
         Employee[] employees = {
                 new SalariedEmployee("Dani", "Kushmaro",
-                        "111-21-3333", birthdays[2], 500),
+                        "111-21-3333", birthdays[0], 500),
                 new CommissionEmployee(
                         "Micky", "Buganim",
-                        "123-45-6789", birthdays[3], 50000, 0.2),
+                        "123-45-6789", birthdays[1], 50000, 0.2),
                 new BasePlusCommissionEmployee(
                         "Dolev", "Goaz",
-                        "987-65-4321", birthdays[4], 50000, 0.2, 20000),
+                        "987-65-4321", birthdays[2], 50000, 0.2, 20000),
                 new HourlyEmployee(
                         "Nicki", "Minaj",
-                        "999-99-9999", birthdays[5], 20, 50),
+                        "999-99-9999", birthdays[3], 20, 50),
                 new PieceWorker(
                         "Yonit", "Levi",
-                        "000-00-0000", birthdays[6], 500, 7)
+                        "000-00-0000", birthdays[4], 500, 7)
         };
 
         return employees;
