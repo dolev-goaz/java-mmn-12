@@ -68,7 +68,7 @@ public class Main {
                 System.out.println(
                         String.format("%s %c %s = %s", r1, operation, r2, output.reduce())
                 );
-            } catch (UnsupportedOperationException e) {
+            } catch (UnsupportedOperationException | ArithmeticException e) {
                 System.err.println(e.getMessage());
             }
         }
@@ -76,7 +76,7 @@ public class Main {
 
     // executes a single operation and returns the result.
     private static Rational runOperation(Rational r1, Rational r2, Character operationChar)
-            throws UnsupportedOperationException {
+            throws UnsupportedOperationException, ArithmeticException {
         Rational output;
         switch (operationChar) {
             case '*':
