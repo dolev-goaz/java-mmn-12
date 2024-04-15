@@ -41,8 +41,8 @@ public class Main {
         BirthDate[] birthdays = new BirthDate[MONTH_SPREAD];
         for (int i = 0; i < MONTH_SPREAD; i++) {
             birthdays[i] = new BirthDate(
-                    1 + rnd.nextInt(MAX_DAY), // 1 to 28, day index starts from 0
-                    i + INITIAL_MONTH, // month index starts from 0
+                    1 + rnd.nextInt(MAX_DAY), // 1 to 28
+                    INITIAL_MONTH + i,
                     LOWEST_YEAR + rnd.nextInt(YEAR_RANGE)
             );
         }
